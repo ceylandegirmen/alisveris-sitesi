@@ -1,0 +1,95 @@
+﻿
+@model IEnumerable<VegHouse.Models.Product>
+
+@{
+
+    var y1 = (List<CartDetails>)ViewBag.CartPartial;
+    var y2 = (List<Cart>)ViewBag.CartPartial2;
+    var y3 = (List<Customers>)ViewBag.CartPartial3;
+    decimal Total1 = 0;
+}
+
+  <main>
+       <br />
+      <br />
+      <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                         <div class="row">
+                                <div class="col-md-5 ml-center">
+                                  
+                                </div>
+                            </div>
+                        <form action="#">
+                     
+                            <div class="table-content table-responsive">
+                     
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                       
+                                            <th class="product-thumbnail">Fotoğraf</th>
+                                            <th class="cart-product-name">Ürün</th>
+                                            <th class="product-price">Ürün Fiyatı</th>
+                                            <th class="product-quantity">Adet</th>
+                                            <th class="product-subtotal">Toplam</th>
+                                            <th class="product-remove">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <div>
+                  @foreach (var item in y2.Where(x => x.Customers.UserId == ViewBag.KulaniciID))
+                  {                
+                    foreach (var item1 in y1.Where(x => x.Cart.CartId == item.CartId))
+                    {
+                           <tr> 
+                    
+                                       <td class="product-thumbnail"><a asp-controller="Home" asp-action="Details" asp-route-id="@item1.ProductId"><img src="~/img/urunler/@Html.DisplayFor(modelItem => item1.Product.ImagePath)" alt=""></a></td>                                         
+
+                                        <td class="product-name"><a asp-controller="Home" asp-action="Details" asp-route-id="@item1.ProductId">@Html.DisplayFor(modelItem => item1.Product.ProductName) </a></td>                                         
+
+                                        <td class="product-price"><span class="amount">@Html.DisplayFor(modelItem => item1.ProductPrice). TL</span></td>
+
+                                            <td class="product-quantity">
+
+                                                <div class="product-price">@item1.Quantity</div>
+                                            </td>
+                                            <td class="product-subtotal"><span class="amount"> @(item1.Product.ProductPrice * item1.Quantity)  </span></td>
+                                           @{
+                                              Total1 = (item1.Product.ProductPrice * item1.Quantity)+Total1;
+                                           }
+                                            <td class="product-remove"><a asp-controller="Home" asp-action="RemoveCart" asp-route-id="@item1.CartDetailsId"><i class="fa fa-times"></i></a></td>
+                      
+                                        </tr>
+                                        
+                    }
+                                        
+                   }         
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                    
+                            <div class="row">
+                                <div class="col-md-5 ml-auto">
+                                    <div class="cart-page-total">
+                                        <h2>Sepet Toplamı  </h2>
+                                        <ul class="mb-20">
+                                            <li type="hidden" >Total <span> @Total1 </span></li>
+                                    @{
+                                        TempData["SepetToplami"]=Total1.ToString();
+                                        TempData.Keep("SepetToplami");
+                                        
+                                    }
+                                        </ul>
+
+                                       <a class="os-btn os-btn-black" asp-controller="Customer" asp-action="CheckOut">Sepeti Onayla</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+  
+   </main>

@@ -1,0 +1,86 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    var y1 = (List<CartDetails>)ViewBag.CartPartial;
+    var y2 = (List<Cart>)ViewBag.CartPartial2;
+    var y3 = (List<Customers>)ViewBag.CartPartial3;
+    var y4=(List<Order>)ViewBag.Siparislerim;
+    decimal Total1 = 0;
+
+}  
+
+ <main>
+        
+
+
+         <!-- profile area start -->
+         <section class="profile__area pt-120 pb-50 grey-bg">
+            <div class="container">
+               <div
+            </div>
+         </section>
+         <!-- profile area end -->
+
+         <!-- profile menu area start -->
+         <section class="profile__menu pb-70 grey-bg">
+            <div class="container ">
+               <div class="row">
+                    <div class="col-md-2 ml-center">
+                    </div>
+                  <div
+                  <div class="col-xxl-8 col-md-8">
+                     <div class="profile__menu-right">
+                         <br />
+
+                         <h2 style="text-align:center">Siparişlerim</h2>
+                  <br />
+                              <div class="order__info"> 
+                                 <div class="order__list white-bg table-responsive">
+                                    <table class="table">
+                                       <thead>
+                                         <tr>
+                                           <th scope="col">SIPARIS NO</th>
+                                           <th scope="col">SIPARIS TARIHI</th>
+                                           <th scope="col">SIPARIS DURUMU</th>
+                                           <th scope="col">ALICI   BILGILERI</th>
+                                           <th scope="col"></th>
+                                           <th scope="col">SIPARIS DETAY</th>
+                                         </tr>
+                                       </thead>
+                                       <tbody>
+                   @foreach (var item in y4.Where(x => x.Customers.UserId == ViewBag.KulaniciID))
+                  {
+                                                        <tr>
+                                                            <td>@Html.DisplayFor(modelItem => item.OrderId)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Customers.Name)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Customers.SurName)</td>
+                                                            <td>
+                                          <a asp-controller="Customer" asp-action="MyOrderDetails" asp-route-id="@item.OrderId" class="os-btn os-btn-blue" >Siparişi Göster </a>                                           
+                                            
+                                                            </td>
+                                                        </tr>
+                   
+                   }
+
+
+                                       </tbody>
+                                     </table>
+                                 </div>
+                              </div>
+                           
+                           
+                         </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- profile menu area end -->
+
+         <div
+    </main>

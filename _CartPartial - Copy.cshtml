@@ -1,0 +1,84 @@
+﻿
+@model IEnumerable<VegHouse.Models.CartDetails>
+
+@{
+
+    var y1 = (List<CartDetails>)ViewBag.CartPartial;
+    var y2 = (List<Cart>)ViewBag.CartPartial2;
+    
+}
+
+  <li><a href="javascript:void(0);" class="cart"><i class="ion-bag" asp-controller="Home" asp-action="AddCart"></i> Sepet <span></span></a>
+
+      
+                                          <div class="mini-cart">
+                                                <div class="mini-cart-inner">
+                                                    <ul class="mini-cart-list">
+
+                                                        @ViewBag.KulaniciID
+
+                        @*    sepetteki ürünler  burda başlıyor*@
+
+                          @foreach (var item in y1.Where(item => item.Cart.Customers.UserId == 1).ToList()) 
+
+
+                       @* @foreach (var group in y2.GroupBy(item => item.CartDetailsId))*@
+                        
+
+                         
+                          {
+                                                        <li>
+                                                            <div class="cart-img f-left">
+                                                               @* <a href="product-details.html">*@
+
+                                                              <a asp-controller="Home" asp-action="Details" asp-route-id="@item.ProductId" class="w-img">  
+                                                                  
+                                                              <img src="~/img/urunler/@Html.DisplayFor(modelItem => item.Product.ImagePath)" alt="">   
+
+
+@*                                                             <img src="assets/img/shop/product/cart-sm/16.jpg" alt="">
+*@                                                            </a>
+                                                            </div>
+                                                            <div class="cart-content f-left text-left">
+                                                                <h5>
+@*                                                                    <a href="product-details.html">Ürün adı</a>
+*@
+                                                                    <a alt="@Html.DisplayFor(modelItem => item.Product.ProductName)"></a>  
+
+                                                                </h5>
+                                                                <div class="cart-price">
+                                                                    <span class="ammount">@item.Quantity <i class="fal fa-times"></i></span>
+
+                                                                    <span class="price">@Html.DisplayFor(modelItem => item.ProductPrice). TL</span>
+
+
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="del-icon f-right mt-30">
+                                                                <a href="#">
+                                                                    <i class="fal fa-times"></i>
+
+
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                     
+                          }            
+                         }
+                                                    </ul>
+                                                   
+                                                    <div class="checkout-link">
+
+                                                       @*<a asp-controller="Customer" asp-action="CheckOut">Sepeti Güncelle </a>*@
+
+                                                        <a href="cart.html" class="os-btn">Sepeti Güncelle</a>
+
+
+                                                       @*<a asp-controller="Customer" asp-action="CheckOut">Siparişi Tamamla </a>*@
+
+                                                        <a class="os-btn os-btn-black" href="checkout.html">Siparişi Tamamla</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>

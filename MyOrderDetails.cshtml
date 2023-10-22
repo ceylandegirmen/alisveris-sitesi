@@ -1,0 +1,88 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    var y1 = (List<CartDetails>)ViewBag.CartPartial;
+    var y2 = (List<Cart>)ViewBag.CartPartial2;
+    var y3 = (List<Customers>)ViewBag.CartPartial3;
+    var y4=(List<Order>)ViewBag.Siparislerim;
+    var y5=(List<OrderDetails>)ViewBag.SiparisDetaylarim;
+    decimal Total1 = 0;
+
+}  
+
+ <main>
+        
+
+
+         <!-- profile area start -->
+         <section class="profile__area pt-120 pb-50 grey-bg">
+            <div class="container">
+               <div
+            </div>
+         </section>
+         <!-- profile area end -->
+
+         <!-- profile menu area start -->
+         <section class="profile__menu pb-70 grey-bg">
+            <div class="container">
+               <div class="row">
+                   <div class="col-md-2 ml-center">
+                    </div>
+                  <div
+                  <div class="col-xxl-8 col-md-8">
+                     <div class="profile__menu-right">
+                        
+                          
+                          
+                              <div class="order__info">
+                             
+
+                                 <div class="order__list white-bg table-responsive">
+                                    <table class="table">
+                                       <thead>
+                                         <tr>
+                                           <th scope="col">URUNLER</th>
+                                           <th scope="col">TUTAR</th>
+                                           <th scope="col">ODEME YONTEMI</th>
+                                           <th scope="col">KARGO ADI</th>
+                                           <th scope="col">ADRES</th>
+                                           <th scope="col">TESLIMAT NO</th>
+                                          
+                                          
+                                         </tr>
+                                       </thead>
+                                       <tbody>
+                   @foreach (var item in y5.Where(x => x.OrderId==ViewBag.Siparisim)) //devamı var
+                  {
+                                                        <tr>
+                                                            <td> <img style="height:60px" src="~/img/urunler/@Html.DisplayFor(modelItem => item.Product.ImagePath)" alt=""> </td>
+                                                            <td>@Html.DisplayFor(modelItem => item.ProductPrice)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Order.OdemeYontemi)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Order.KargoAdi)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Order.Adres)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Order.KargoTakipNo)</td>
+                                                           
+                                                        </tr>
+                   
+                   }
+
+
+                                       </tbody>
+                                     </table>
+                                 </div>
+                              </div>
+                           
+                           
+                         </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- profile menu area end -->
+
+         <div
+    </main>

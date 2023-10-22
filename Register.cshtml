@@ -1,0 +1,92 @@
+﻿@model VegHouse.Models.Customers
+
+
+@{
+     ViewData["Title"] = "Register";
+     //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ <main>
+     
+
+
+  <section class="login-area pt-100 pb-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2">
+                   
+                           <div class="basic-login">
+                                <h3 class="text-center mb-60">Üye Ol</h3>
+
+                             <span class="text-danger"style="font-size: 25px">@ViewBag.RegisterHata</span>
+                             <span class="text-success"style="font-size: 25px">@ViewBag.RegisterBasarili</span>
+
+                              <form asp-action="Register" >
+
+                                  
+                                     <div class="form-group">
+                                       <label asp-for="Name" class="control-label"> <span>Ad*</span></label>
+                                       <input asp-for="Name" class="form-control" name="Name" placeholder="Adınız.."/>
+                                       <span asp-validation-for="Name" class="text-black"></span>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                       <label asp-for="SurName" class="control-label"> <span>Soyad*</span></label>
+                                       <input asp-for="SurName" class="form-control" name="SurName" placeholder="Soyadınız.."/>
+                                       <span asp-validation-for="SurName" class="text-black"></span>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                       <label asp-for="Email" class="control-label"> <span>Mail Adresi*</span></label>
+                                       <input asp-for="Email" class="form-control" name="Email" placeholder="Mail Adresiniz...."/>
+                                       <span asp-validation-for="@Model.Email" class="text-black"></span>
+                                    </div>
+
+                                     
+                                    
+                                    <div class="form-group">
+                                       <label asp-for="Password" class="control-label"> <span>Şifre*</span></label>
+                                       <input asp-for="Password" class="form-control"  type="password" placeholder="Şifreniz...."/>
+                                       <span asp-validation-for="@Model.Password" class="text-black" ></span>
+                                    </div>
+                                    
+
+                                    <div class="form-group">
+                                       <label asp-for="RePassword" class="control-label"> <span>Şifre Tekrarı*</span></label>
+                                       <input asp-for="RePassword" class="form-control"  type="password" placeholder="Tekrar Şifreniz...."/>
+                                       <span asp-validation-for="RePassword" class="text-black" ></span>
+                                    </div>
+
+
+                                  
+                                  
+
+                                    <div class="mt-10"></div>                                   
+
+                                    <input type="submit"  value="Üye Ol" class="btn btn-primary" />
+                                   
+
+                                    @*a asp-controller="Customer" asp-action="Register"*@
+
+                                    <div class="or-divide"><span>veya</span></div>
+
+
+
+                                      <li><a class="os-btn os-btn-black w-100"  asp-controller="Customer" asp-action="Login">Giriş yap </a></li>
+
+                                    @*<a class="os-btn os-btn-black w-100"  asp-controller="Customer" asp-action="Login">Giriş yap </a>*@
+
+                                  
+                            </form>
+                            </div>
+                            
+                        </div>
+                     
+                    </div>
+                    
+                </div>
+     </section>
+ </main>

@@ -1,0 +1,275 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+    
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>VegHouse - Sağlıklı Yaşam ve Hayvanlara Özgürlük</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="shortcut icon" type="image/x-icon" href="~/tema1/img/favicon.png">
+        
+		<!-- CSS here -->
+        
+        <link rel="stylesheet" href="~/tema1/css/preloader.css">
+        <link rel="stylesheet" href="~/tema1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/tema1/css/slick.css">
+        <link rel="stylesheet" href="~/tema1/css/metisMenu.css">
+        <link rel="stylesheet" href="~/tema1/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="~/tema1/css/animate.min.css">
+        <link rel="stylesheet" href="~/tema1/css/jquery.fancybox.min.css">
+        <link rel="stylesheet" href="~/tema1/css/fontAwesome5Pro.css">
+        <link rel="stylesheet" href="~/tema1/css/ionicons.min.css">
+        <link rel="stylesheet" href="~/tema1/css/default.css">
+        <link rel="stylesheet" href="~/tema1/css/style.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->  
+
+        <!-- prealoder area start -->
+        <div id="loading">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+                <div class="object" id="first_object"></div>
+                <div class="object" id="second_object"></div>
+                <div class="object" id="third_object"></div>
+                </div>
+            </div>      
+        </div>
+        <!-- prealoder area end -->
+
+        <!-- header area start -->
+        <header>
+            <div id="header-sticky" class="header__area grey-bg">
+                <div class="container" >
+
+                    <div class="row align-items-center">
+                       <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2">
+
+                            <div class="logo">
+                            <a asp-controller="Home" asp-action="Index">
+                                 <img src="~/tema1/img/logo/1logo.jpg" alt="logo" >
+                            </a>
+                            
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-1 col-sm-1">
+                            <div class="header__right p-relative d-flex justify-content-between align-items-center">
+                                <div class="main-menu d-none d-lg-block">
+                                    <nav>
+                                        <ul style="font-size:larger">
+
+                                            <li ><a class="nav-link text-dark" asp-controller="Home" asp-action="List" asp-route-id="1">Kahvaltılık</a></li>
+
+                                            <li ><a class="nav-link text-dark" asp-controller="Home" asp-action="List" asp-route-id="2">Gıda</a></li>
+
+                                            <li ><a class="nav-link text-dark" asp-controller="Home" asp-action="List" asp-route-id="3">Glutensiz</a></li>
+                                               
+                                            <li ><a class="nav-link text-dark" asp-controller="Home" asp-action="List" asp-route-id="4">Vegan Yaşam</a></li>
+
+                                            <li ><a class="nav-link text-dark" asp-controller="Home" asp-action="List" asp-route-id="5">Bakım</a></li> 
+
+                                            <li ><a class="nav-link text-dark" asp-controller="Home" asp-action="List" asp-route-id="6">Temizlik</a></li>
+
+                                            <li ><a class="nav-link text-dark" asp-controller="Home" asp-action="List" asp-route-id="7">Aromaterapi</a></li>
+                                                                                                                                           
+                                        </ul>                                     
+                                    </nav>
+                                </div>                           
+
+
+
+                                <div class="header__action">
+
+                                    <ul style="font-size:medium"> 
+                                         
+                                        @if (ViewBag.KulaniciEmail == null)
+                                        {
+                                        <li><a asp-controller="Customer" asp-action="Login">Giriş Yap </a></li>
+                                        <li> <a href="javascript:void(0);"><i class="far fa-bars"></i></a>
+                                            <ul class="extra-info">
+                                                <li>
+                                                    <div class="my-account">
+                                                        <div class="extra-title">
+                                                           
+                                                        </div>
+                                                        <ul>
+                                                                                                                                                                           
+                                                            <li><a asp-controller="Customer" asp-action="Register">Üye Ol </a></li>
+                                                            
+                                                   
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                              
+                                            </ul>
+                                        </li>
+                                        }
+                                        else
+                                        { // Eğer login olduysak burası gözükecek.
+                                        @ViewBag.KulaniciEmail
+
+                                        <li> <a href="javascript:void(0);"><i class="far fa-bars"></i></a>
+                                            <ul class="extra-info">
+                                                <li>
+                                                    <div class="my-account">
+                                                        <div class="extra-title">
+                                                           
+                                                        </div>
+                                                        <ul>
+                                                            <li><a asp-controller="Customer" asp-action="Account">Hesabım </a></li>
+                                                            <li><a asp-controller="Customer" asp-action="MyOrders">Siparişlerim</a></li>  
+                                                            <li><a asp-controller="Customer" asp-action="Logout">Çıkış Yap</a></li>
+                                                   
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                              
+                                            </ul>
+                                        </li>
+                                        }
+                                        
+
+
+                                     
+
+
+                                         <partial name="~/Views/Shared/_CartPartial.cshtml" />
+                                    </ul>
+                                </div>                                                          
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+           
+        </header>
+        <!-- header area end -->
+        
+        <!-- scroll up area start -->
+        <div class="scroll-up" id="scroll" style="display: none;">
+            <a href="javascript:void(0);"><i class="fas fa-level-up-alt"></i></a>
+        </div>
+        <!-- scroll up area end -->
+
+        <!-- search area start -->
+       @* <section class="header__search white-bg transition-3">*@
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="header__search-inner text-center">
+                            <form asp-action="Search">                           
+                                <div class="header__search-input p-relative">
+                                    <input name="searchString" type="text" placeholder="Ürün Arama... ">
+                                    <button type="submit"><i class="far fa-search"></i></button>
+                                </div>
+                            </form>                                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+       @* </section>*@
+        <div class="body-overlay transition-3"></div>
+       
+        <div class="body-overlay transition-3"></div>
+        <!-- extra info area end -->
+          @RenderBody()
+
+
+        <!-- footer area start -->
+        <section class="footer__area footer-bg">
+            <div class="footer__top pt-100 pb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                            <div class="footer__widget mb-30">
+                                <div class="footer__widget-title mb-25">
+                                   
+                                </div>
+                                <div class="footer__widget-content">
+                                 
+                                    <div class="footer__contact">
+                                        <ul>
+                                            <li>
+                                                <div class="icon">
+                                                    <i class="fal fa-map-marker-alt"></i>
+                                                </div>
+                                                <div class="text">
+                                                    <span>Address: SISLI/ ISTANBUL</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="icon">
+                                                    <i class="fal fa-envelope-open-text"></i>
+                                                </div>
+                                                <div class="text">
+                                                    <span>Email: ceylan@hotmail.com </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="icon">
+                                                    <i class="fal fa-phone-alt"></i>
+                                                </div>
+                                                <div class="text">
+                                                    <span>Phone Number: (+90) 123 456 789</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-12">
+                            <div class="footer__widget mb-30">
+                                <div class="footer__widget-title">
+                                    <h5>Hakkımızda</h5>
+                                </div>
+                                <div class="footer__widget-content">
+                                    <div class="footer__links">
+                                        <ul>
+                                            <li><a href="#">Biz Kimiz?</a></li>
+                                            <li><a href="#">İletişim</a></li>
+                                            <li><a href="#">Gizlilik Politikası</a></li>
+                                            <li><a href="#">Şartlar ve Koşullar</a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- footer area end -->
+        
+		<!-- JS here -->
+        @*<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="~/tema1/js/vendor/modernizr-3.5.0.min.js"></script>*@
+        <script src="~/tema1/js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="~/tema1/js/vendor/waypoints.min.js"></script>
+        <script src="~/tema1/js/bootstrap.bundle.min.js"></script>
+        <script src="~/tema1/js/metisMenu.min.js"></script>
+        <script src="~/tema1/js/slick.min.js"></script>
+        <script src="~/tema1/js/jquery.fancybox.min.js"></script>
+        <script src="~/tema1/js/isotope.pkgd.min.js"></script>
+        <script src="~/tema1/js/owl.carousel.min.js"></script>
+        <script src="~/tema1/js/jquery-ui-slider-range.js"></script>
+        <script src="~/tema1/js/ajax-form.js"></script>
+        <script src="~/tema1/js/wow.min.js"></script>
+        <script src="~/tema1/js/imagesloaded.pkgd.min.js"></script>
+        <script src="~/tema1/js/main.js"></script>
+    </body>
+
+</html>

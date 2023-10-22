@@ -1,0 +1,106 @@
+﻿@model IEnumerable<VegHouse.Models.Product>
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var p1 = (List<Product>)ViewBag.ProductList;
+    var p2 = ViewBag.ProductId;
+    //var mesaj = ViewBag.SepetMesaj;
+    var mesaj = TempData["SepetMesaj2"];
+
+
+
+    @if (mesaj != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@mesaj");
+            };
+        </script>
+    }
+
+}
+
+@*</script>*@
+
+  @foreach (var item in p1.Where(item => item.ProductId == p2).ToList()) 
+   {
+
+   <main>
+
+
+            <!-- shop details area end -->
+          <section class="shop__area pb-65">
+               <div class="shop__top grey-bg-6 pt-100 pb-90">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="product__modal-box d-flex">
+                                    <div class="product__modal-nav mr-20">
+                                        <nav>
+                                            <div class="nav nav-tabs" id="product-details" role="tablist">
+                                                <a class="nav-item nav-link active" id="pro-one-tab" data-toggle="tab" href="#pro-one" role="tab" aria-controls="pro-one" aria-selected="true">
+                                                <div class="product__nav-img w-img">
+
+                                                     <img src="~/img/urunler/@Html.DisplayFor(modelItem => item.ImagePath)" alt="">   
+                                                    
+                                                </div>
+                                                </a>
+                                                                                               
+                                            </div>
+                                        </nav>
+                                    </div>
+                                    <div class="tab-content mb-20" id="product-detailsContent">
+                                        <div class="tab-pane fade show active" id="pro-one" role="tabpanel" aria-labelledby="@Html.DisplayFor(modelItem => item.ProductName)pro-one-tab">
+                                            <div class="product__modal-img product__thumb w-img">
+
+
+                                                 <img src="~/img/urunler/@Html.DisplayFor(modelItem => item.ImagePath)" alt="@Html.DisplayFor(modelItem => item.ProductName)">  
+                                                                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="product__modal-content product__modal-content-2">
+                                    <h4><a href=""product-details.html">@Html.DisplayFor(modelItem => item.ProductName)</a></h4>
+                                    
+                                    <div class="product__price-2 mb-25">
+                                        <span> @Html.DisplayFor(modelItem => item.ProductPrice). TL </span>
+                                        
+                                    </div>
+                                    <div class="product__modal-des mb-30">
+                                        <p>@Html.DisplayFor(modelItem => item.ProductDescription)</p>
+                                    </div>
+                                    <div class="product__modal-form mb-30">
+                                        <form asp-action="AddCart">
+                                           
+                                          
+                                            <div class="product__modal-required mb-5">
+                                                <span >Zorunlu Alan *</span>
+                                            </div>
+                                            <div class="pro-quan-area d-sm-flex align-items-center">
+                                                <div class="product-quantity-title">
+                                                    <label>Adet</label>
+                                                </div>
+                                                <div class="product-quantity mr-20 mb-20">
+                                                    <div class="cart-plus-minus"><input name="adet" type="text" value="1" /></div>
+                                                </div>
+                                                <div class="pro-cart-btn">
+                                                     <input  name="Id" value="@Html.DisplayFor(modelItem => item.ProductId)" type="hidden" >
+                                            
+                                                 <button type="submit"><i class="add-cart-btn mb-20">+ Sepete Ekle</i></button>
+                                                </div>
+                                            </div>
+                                            
+                                        </form> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </section>
+      </main>
+  }

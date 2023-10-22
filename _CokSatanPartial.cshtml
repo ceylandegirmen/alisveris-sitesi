@@ -1,0 +1,87 @@
+﻿ @model IEnumerable<VegHouse.Models.Product>
+
+@{
+     var x1 = (List<Product>)ViewBag.CokSatanlar;
+}
+
+
+
+<section class="product__area pt-60 pb-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="section__title-wrapper text-center mb-55">
+                                <div class="section__title mb-10">
+                                    <h2>Çok Satanlar</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12" >    
+                            
+                           <div class="product__slider owl-carousel">
+                              @foreach (var item in x1.ToList())
+                              {
+                              @* <div class="product__item">*@
+
+                              @*    ürün burda başlıyor*@
+       
+                                <div class="product__wrapper mb-60">
+                                        <div class="product__thumb" >
+                                            <a asp-controller="Home" asp-action="Details" asp-route-id="@item.ProductId" class="w-img">
+                                                <img src="~/img/urunler/@Html.DisplayFor(modelItem => item.ImagePath)" alt="@Html.DisplayFor(modelItem => item.ProductName)" >
+                                               
+                                            </a>
+                                          
+                                         </div>
+                                        <div class="product__content p-relative">
+                                            <div class="product__content-inner">
+                                                <h4><a asp-controller="Home" asp-action="Details" asp-route-id="@item.ProductId" > @Html.DisplayFor(modelItem => item.ProductName)</a></h4>
+
+                                                @*<div class="cart-plus-minus"><input name="adet" type="text" value="1" /></div>*@
+                                          
+                                                <div class="product__price-2 mb-30">
+                                                    <span> @Html.DisplayFor(modelItem => item.ProductPrice) TL</span>
+                                            
+                                                </div> 
+                                             </div>
+                                    <form asp-action="AddCart">
+
+                                        <div class="pro-quan-area d-sm-flex align-items-center">
+                                                <div class="product-quantity-title">
+                                                    <label>Adet</label>
+                                                </div>
+                                                <div class="product-quantity mr-20 mb-20">
+                                                    <div class="cart-plus-minus"><input name="adet" type="text" value="1" /></div>
+                                                </div>
+                                                <div class="pro-cart-btn">
+                                                     <input  name="Id" value="@Html.DisplayFor(modelItem => item.ProductId)" type="hidden" >
+                                             @if (ViewBag.KulaniciEmail != null)
+                                        {
+                                                <button type="submit"><i class="add-cart-btn mb-20">+ Sepete Ekle</i></button>
+                                            }
+                                            else
+                                            {
+                                                <li><a class="os-btn os-btn-black w-100"  asp-controller="Customer" asp-action="Login">+ Sepete Ekle </a></li>
+                                             
+                                            }
+
+
+                                               </div>
+                                            </div>
+
+                                     </form>   
+                                      </div>
+                                      
+                                 </div>                                      
+                                 @*
+                            </div>*@ 
+                             } 
+                             </div> 
+
+                        </div> 
+                     </div>
+                </div> 
+           </section>

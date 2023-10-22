@@ -1,0 +1,64 @@
+﻿
+
+
+@{
+    ViewData["Title"] = "Index";
+    var mesaj = TempData["SepetMesaj2"];
+
+    
+    @if (mesaj != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@mesaj");
+            };
+        </script>
+
+        mesaj = "";
+    }
+} 
+   <main>
+            <!-- slider area start -->
+ 
+      <section class="slider__area p-relative">
+                <div class="slider-active">
+                    <div class="single-slider slider__height d-flex align-items-center"  data-background="tema1/img/slider/slidersebze.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 col-12">
+                                    <div class="slider__content">
+                                        <h2 data-animation="fadeInUp" data-delay=".2s" style="font-size:xx-large">Neden Vegan?</h2>
+                                        <p data-animation="fadeInUp" data-delay=".4s" style="font-size: large">Veganlık ya da veganizm, hayvanların kullanılmasını desteklemeyen bir yaşam biçimidir. 
+                                            Hayvan sömürme yoluyla elde edilen gıdaları, giyecekleri ve diğer tüm yan ürünleri kullanmayı reddetmedir.   
+   Bir yaşam biçimi olarak veganlık tıpkı insanlar gibi duygulara sahip olan; acıyı, mutluluğu, hüznü hissedebilen; yaşamak için mücadele eden ve ölümden kaçan hayvanların insan faydası için öldürülmesini ve sömürülmesini önlemeyi amaç edinmiştir. </p>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="single-slider slider__height d-flex align-items-center"  data-background="tema1/img/slider/sliderdomuz.jpg">
+                        <div class="container">
+                            <div class="row">
+                               <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 col-12">
+                                    <div class="slider__content">
+                                        <h2 data-animation="fadeInUp" data-delay=".2s" style="font-size:xx-large">Veganlığın Önemi..</h2>
+                                        <p data-animation="fadeInUp" data-delay=".4s" style="font-size: large" >Sağlığın yanı sıra çevre kirliliği, iklim değişimi ve sürdürülebilirliğin de veganlığın bir diğer dayandığı temel olduğuna değinmeden geçmeyelim. Yiyecek için hayvan yetiştirmek büyük miktarda toprak, yiyecek, enerji ve su gerektiriyor ve hayvan tarımının yan ürünleri havamızı ve su yollarımızı büyük ölçüde kirletiyor.
+                                            Uzmanlar, 2050 yılında dünya nüfusunun 10 milyara ulaşma olasılığını ve bununla birlikte oluşacak çevresel sorunları göz önüne alarak, hayvansal gıda tüketiminin sürdürülebilir olmadığını söylüyor.</p>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+             <partial name="~/Views/Shared/_CokSatanPartial.cshtml" />  
+             <partial name="~/Views/Shared/_AromaterapiPartial.cshtml" />
+    </main> 
+
+            

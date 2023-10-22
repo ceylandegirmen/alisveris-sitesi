@@ -1,0 +1,170 @@
+﻿@model VegHouse.Models.Order
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal Kargo= 19;
+   
+    
+    var y1 = (List<CartDetails>)ViewBag.CartPartial;
+    var y2 = (List<Cart>)ViewBag.CartPartial2;
+    var y3 = (List<Customers>)ViewBag.CartPartial3;
+    decimal Total1 = 0;
+
+   
+    var isim = ViewBag.isim;
+    var soyisim = ViewBag.soyisim;
+    var email = ViewBag.email;
+    var adresim = ViewBag.adresim;
+    var tel = ViewBag.tel;
+
+}
+
+         @foreach (var item in y2.Where(x => x.Customers.UserId == ViewBag.KulaniciID))
+              {                
+                foreach (var item1 in y1.Where(x => x.Cart.CartId == item.CartId))
+              {
+                   
+                 {
+                     Total1 = (item1.Product.ProductPrice * item1.Quantity)+Total1;
+                 }
+            }
+                                        
+           }    
+  <main>
+
+      <br />
+      <br />
+        <section class="checkout-area pb-70">
+            <div class="container">
+                <form asp-action="Pay">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="checkbox-form">
+                                <h3>Sepetim</h3>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="country-select">
+                                            <label>Ülke Seçiniz <span class="required">*</span></label> 
+                                            <select>
+                                                
+                                                <option value="volvo">Türkiye</option>
+                                                <option value="saab">İtalya</option>
+                                                <option value="mercedes">İspanya</option>
+                                                <option value="audi">Almanya</option>
+                                                <option value="audi2">Romanya</option>
+                                                <option value="audi3">Yunanistan</option>
+                                                <option value="audi4">Kolombiya</option>                                               
+                                            </select>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-md-10">
+                                        <div class="checkout-form-list">
+                                            <label>Ad <span class="required">*</span></label>
+                                            <input asp-for="Ad" type="text" placeholder="" value="@isim"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="checkout-form-list">
+                                            <label>Soyad <span class="required">*</span></label>
+                                            <input  asp-for="Soyad" type="text" placeholder="" value="@soyisim" />
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="col-md-10">
+                                        <div class="checkout-form-list">
+                                            <label>Adres<span class="required">*</span></label>
+                                            <input asp-for="Adres" type="text" placeholder="" value="@adresim"/>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-md-10">
+                                        <div class="checkout-form-list">
+                                            <label>İl <span class="required">*</span></label>
+                                            <input  asp-for="Il"type="text" placeholder="" value="" />
+                                        </div>
+                                    </div>     
+                                                                       
+                                    <div class="col-md-10">
+                                        <div class="checkout-form-list">
+                                            <label>İlçe <span class="required">*</span></label>
+                                            <input  asp-for="Ilce" type="text" placeholder="" value="" />
+                                        </div>
+                                    </div>  
+                                
+
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>E-mail Adresi <span class="required">*</span></label>
+                                            <input  asp-for="Eposta" type="email" placeholder=""  value="@email"/>
+                                        </div>
+                                    </div>
+
+                                  
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Telefon <span class="required">*</span></label>
+                                            <input  asp-for="Tel"type="text"  maxlength="11"  id="phone-number" placeholder="" value="@tel"/>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                               
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="your-order mb-30 ">
+                                <h3>Sipariş Özeti</h3>
+                                <div class="your-order-table table-responsive">
+                                    
+                                    <table>
+                                        <thead>
+                                            <tr>
+
+                                            @{
+                                                decimal SepetToplamiDec = Total1;
+
+                                            }
+                                   
+
+                                                <th class="product-name">Sipariş Tutarı</th>
+
+                                                <th class="product-total">@SepetToplamiDec</th>
+                                     
+                                           
+                                            </tr>
+                                            <tr>
+                                                <th class="product-name">Kargo Tutarı</th>
+                                                <th class="product-total">19 </th>
+                                            </tr>
+                                        </thead>
+                                      
+                                        <tfoot>
+                                          
+                                            <tr class="order-total">
+                                                <th>Toplam Tutar</th>
+                                                <td><strong><span class="amount">@(SepetToplamiDec+ Kargo)</span></strong>
+                                                    
+                                   
+                                                </td>
+                                                <input type="hidden" asp-for="OrderPrice" value="@(SepetToplamiDec+ Kargo)"/>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                               
+                                    <div class="order-button-payment mt-20">
+
+@*                                       <a class="os-btn os-btn-black" asp-controller="Customer" asp-action="Pay">Kaydet ve Devam  Et</a>
+*@                                       <input type="submit"  value="Kaydet ve Devam  Et" class="btn btn-primary" />
+                                    </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+   </main>

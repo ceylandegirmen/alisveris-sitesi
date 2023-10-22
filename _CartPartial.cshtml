@@ -1,0 +1,78 @@
+﻿
+@model IEnumerable<VegHouse.Models.Cart>
+
+@{
+
+    var y1 = (List<CartDetails>)ViewBag.CartPartial;
+    var y2 = (List<Cart>)ViewBag.CartPartial2;
+    var y3 = (List<Customers>)ViewBag.CartPartial3;
+}
+
+  <li><a href="javascript:void(0);" class="cart">@y1.Count  <i class="ion-bag" asp-controller="Home" asp-action="AddCart"></i> Sepet <span></span></a>
+
+      
+                                          <div class="mini-cart">
+                                                <div class="mini-cart-inner">
+                                                    <ul class="mini-cart-list">
+
+                                                      
+
+                        @*    sepetteki ürünler  burda başlıyor*@
+                @if (ViewBag.KulaniciID != null)
+                {                                    
+                   @foreach (var item in y2.Where(x => x.Customers.UserId == ViewBag.KulaniciID))                                 
+                    {                 
+                     foreach (var item1 in y1.Where(x => x.Cart.CartId == item.CartId))
+                     {
+             
+                                                        <li>
+                                                            <div class="cart-img f-left">
+                                                               @* <a href="product-details.html">*@
+
+                                                              <a asp-controller="Home" asp-action="Details" asp-route-id="@item1.ProductId" class="w-img">  
+                                                                  
+                                                              <img src="~/img/urunler/@Html.DisplayFor(modelItem => item1.Product.ImagePath)" alt="">   
+
+
+                                                             @*<img src="assets/img/shop/product/cart-sm/16.jpg" alt="">*@
+                                                            </a>
+
+
+                                                            </div>
+                                                            <div class="cart-content f-left text-left">
+                                                                <h5>
+
+                                                                   <a alt="@Html.DisplayFor(modelItem => item1.Product.ProductName)"></a>  
+
+                                                                </h5>
+                                                                <div class="cart-price">
+                                                                   <span class="ammount">@item1.Quantity <i class="fal fa-times"></i></span>
+
+                                                                    <span class="price">@Html.DisplayFor(modelItem => item1.ProductPrice). TL</span>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="del-icon f-center mt-10">
+                                                                <a asp-controller="Home" asp-action="RemoveCart" asp-route-id="@item1.CartDetailsId">
+                                                                     <i class="fal fa-times">Sil </i > 
+                                                                </a>
+                                                            </div>
+                                                        </li>                                                     
+                      }
+                   }                         
+                }
+                else
+                {
+                   <h3 style="text-align:center">Sepet Boş</h3>
+                }
+                                                    </ul>
+                                                   
+                                                    <div class="checkout-link">
+
+                                                        <a class="os-btn os-btn-black" asp-controller="Customer" asp-action="Carts">Sepete Git</a>
+                                                        <a class="os-btn os-btn-black" asp-controller="Customer" asp-action="CheckOut">Sepeti Onayla</a>
+
+                                                    </div>
+                                                </div>
+                                           </div>
+   </li>
